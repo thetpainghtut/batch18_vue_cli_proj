@@ -1,28 +1,25 @@
 <template>
   <div class="testing container">
-    <h1>This is an testing page</h1>
-    <p class="text-danger">{{name}}</p>
-
-    <div class="row">
-      <div class="col-md-4" v-for="(item,index) in items" :key="index">
-        <div class="card">
-          <img v-bind:src="item.image" class="card-img-top">
-          <div class="card-body">
-            <p class="card-text">{{item.name}} - {{item.price}} Ks</p>
-          </div>
-        </div>
-      </div>
+    <h1>This is an all items page</h1>
+    <div class="row mt-3">
+      <p v-if="error">Server Error!</p>
+      <Item v-for="(item,index) in items" :key="index" :item="item" v-else></Item>
     </div>
   </div>
 </template>
 
 <script type="text/javascript">
   import Service from '@/services/Service.js'
+  import Item from '@/components/Item.vue'
 
   export default{
+    name: 'Testing',
+    components:{
+      Item
+    },
     data(){
       return {
-        name:'Mg Mg',
+        error: false,
         items:[]
       }
     },
@@ -33,11 +30,15 @@
           this.items = response.data.items
         })
         .catch(error => {
+          this.error = true
           console.log('There was an error:',error.response)
         })
     },
     methods:{
-
+      
+    },
+    computed:{
+      
     }
   }
 </script>

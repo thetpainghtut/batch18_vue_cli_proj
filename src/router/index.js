@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Testing from '../views/Testing.vue'
+import Allitems from '../views/Allitems.vue'
+import Itemdetail from '../views/Itemdetail.vue'
 
 Vue.use(VueRouter)
 
@@ -20,9 +21,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/testing',
-    name: 'testing',
-    component: Testing
+    path: '/allitems',
+    name: 'allitems',
+    component: Allitems
+  },
+  {
+    path: '/allitems/:id',
+    name: 'itemdetail',
+    component: Itemdetail
   }
 ]
 
